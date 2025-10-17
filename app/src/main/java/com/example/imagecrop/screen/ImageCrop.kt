@@ -148,10 +148,10 @@ fun ImageCropper() {
                 color = Color.Green, topLeft = topLeft, size = rectSize, style = Stroke(width = 4f)
             )
 
-            drawRect(
-                color = Color.Black.copy(alpha = 0.5f),
-                size = Size(constraints.maxWidth.toFloat(), constraints.maxHeight.toFloat())
-            )
+//            drawRect(
+//                color = Color.Black.copy(alpha = 0.5f),
+//                size = Size(constraints.maxWidth.toFloat(), constraints.maxHeight.toFloat())
+//            )
             drawRect(
                 color = Color.Transparent,
                 topLeft = topLeft,
