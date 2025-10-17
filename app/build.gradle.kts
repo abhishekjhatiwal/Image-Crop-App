@@ -57,4 +57,14 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // Standard Kotlin Coroutines with Android main-thread support
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+
+    // The core coroutines library is often bundled, but can be included separately
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4")
+
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 }

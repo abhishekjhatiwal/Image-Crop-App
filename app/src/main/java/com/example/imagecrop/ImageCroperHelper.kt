@@ -17,8 +17,11 @@ fun Offset.isNear(point: Offset, threshold: Float = 50f): Boolean {
 
 // Draw a handle at the specified position
 fun DrawScope.drawHandle(center: Offset) {
+    val handleRadius = size.minDimension * 0.015f
     drawCircle(
-        color = Color.Green, radius = 25f, center = center
+        color = Color.Green,
+        radius = handleRadius,
+        center = center
     )
 }
 
@@ -31,6 +34,7 @@ fun DrawScope.drawHandle(center: Offset) {
  * @param canvasHeight The height of the canvas.
  * @return A Bitmap representing the cropped area.
  */
+@Throws(IllegalArgumentException::class)
 fun getCroppedBitmap(
     imageBitmap: ImageBitmap,   // The original ImageBitmap
     cropRect: Rect,             // The crop rectangle area on the canvas
@@ -69,7 +73,14 @@ fun getCroppedBitmap(
     val cropHeight = (cropBottom - cropTop).coerceAtLeast(1)  // Ensure minimum 1px height
 
     // Create a cropped bitmap from the original bitmap using the calculated rectangle
-    return Bitmap.createBitmap(
-        imageBitmap.asAndroidBitmap(), cropLeft, cropTop, cropWidth, cropHeight
-    )
+    return try {
+        Bitmap.createBitmap(
+            imageBitmap.asAndroidBitmap(),
+            cropLeft, cropTop, cropWidth, cropHeight
+        )
+    } catch (e: Exception) {
+        // Return a safe fallback (whole image)
+        imageBitmap.asAndroidBitmap()
+    }
+
 }
